@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport"content="width=device-width, initial-scale=1""> 
+       
+        <title>Account</title>
+    </head>
+        <link rel="stylesheet"  href="Style.css">
+        <body>
+        <button onclick="document.getElementById('id01').style.display='block'">Login</button>
+
+    
+        <div id="id01" class="modal">
+          <span onclick="document.getElementById('id01').style.display='none'"
+        class="close" title="Close Modal">&times;</span>
+        
+        
+          <form class="modal-content animate" action="/action_page.php">
+            <div class="imgcontainer">
+              <img src="account.png" alt="Avatar" class="avatar">
+            </div>
+        
+            <div class="container">
+              <h2>Login</h2>
+              <label for="uname"><b>Username</b></label>
+              <input type="text" placeholder="Enter Username" name="uname" required>
+        
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="psw" required>
+        
+              <button type="submit">Login</button>
+              <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+              </label>
+            </div>
+        
+            <div class="container" style="background-color:#f1f1f1">
+              <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+              <span class="psw">Forgot <a href="#">password?</a></span>
+                        <div class="login_signup">Don't have an account? <a href="#" id="signup">Signup</a>
+            </div>
+            <div class="form signup_form">
+              <form action="#">
+                <h2>Signup</h2>
+                <div class="input_box">
+                  <input type="email" placeholder="Enter your email" required/>
+                  <i class="uli uil-envelope-alt email"></i>
+                </div>
+                <div class="input_box">
+                  <input type="password" placeholder="Create password" required/>
+                  <i class="uil uli-lock password"></i>
+                  <i class="uil uli-eye-slash pw_hide"></i>
+                  </div>
+                  <div class="input_box">
+                 <input type="password" placeholder="Confirm password" required/>
+                  <i class="uil uli-lock password"></i>
+                  <i class="uil uli-eye-slash pw_hide"></i>
+                  </div>
+              <button class="button">Signup Now</button>
+                  <div class="login_signup">Already have an account? <a href="#" id="signup">Login</a>
+                  </div>
+          </form>
+           <!-- Footer Section -->
+        <footer class="footer">
+          <div class="footer-container">
+              <div class="footer-links">
+                  <a href="Index.html">Home</a>
+                  <a href="Shop.html">Shop</a>
+                  <a href="Contact.html">Contact Us</a>
+                  <a href="About.html">About Us</a>
+                  <a href="Terms.html">Terms & Conditions</a>
+              </div>
+              <div class="footer-social">
+                  <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                  <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                  <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                  <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+              <div class="footer-info">
+                  <p><b>&copy; 2024 Sneakers Collection. All rights reserved.</b></p>
+              </div>
+          </div>
+      </footer>
+  
+        </div>
+        <script>
+         
+          var modal = document.getElementById('id01');
+          window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.style.display = "none";
+            }
+          }
+          </script>
+      </body>
+  </html>

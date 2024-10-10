@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Available Products</title>
+    <link rel="stylesheet" href="Style.css">
+    <script src="Script.js"></script>
+    <script>
+        let cart = [];
+
+        function AddToCart(itemName, itemPrice) {
+            // Add item to cart
+            cart.push({ name: itemName, price: itemPrice });
+            updateCartDisplay();
+        }
+
+        function removeFromCart(index) {
+            // Remove item from cart
+            cart.splice(index, 1);
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const cartDiv = document.getElementById("title");
+            cartDiv.innerHTML = ''; // Clear existing cart display
+            let totalPrice = 0;
+
+            // Display each item in the cart
+            cart.forEach((item, index) => {
+                const itemDiv = document.createElement("div");
+                itemDiv.innerHTML = `
+                    <p>${item.name} - Ksh ${item.price} 
+                    <button onclick="removeFromCart(${index})">Remove</button></p>`;
+                cartDiv.appendChild(itemDiv);
+                totalPrice += item.price; // Calculate total price
+            });
+
+            // Display total price
+            const totalDiv = document.createElement("div");
+            totalDiv.innerHTML = `<strong>Total Price: Ksh ${totalPrice}</strong>`;
+            cartDiv.appendChild(totalDiv);
+
+            // Update total price for checkout
+            document.getElementById("total-price").value = totalPrice;
+        }
+
+        function checkout() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const address = document.getElementById("address").value;
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+            const totalPrice = document.getElementById("total-price").value;
+
+            if (name && email && address && paymentMethod) {
+                alert(`Checkout Successful!\nName: ${name}\nEmail: ${email}\nAddress: ${address}\nPayment Method: ${paymentMethod}\nTotal: Ksh ${totalPrice}`);
+            } else {
+                alert("Please fill in all fields!");
+            }
+        }
+    </script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="nav_logo">Products</a>
+            <ul class="nav_items">
+                <li class="nav_items">
+                    <a href="Index.html" class="nav_link">Home</a>
+                    <a href="Contact.html" class="nav_link">Contact us</a>
+                    <a href="Account.html" class="nav_link">Account</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="Categories">
+        <div class="small-container">
+            <h2 class="title">Featured Products</h2>
+            <div class="cart" id="cart">
+                <div class="title">CART</div>
+                <hr />
+                <div id="title"></div>
+            </div>
+            <div class="row">
+                <div class="column-1">
+                    <div class="card" item="item1">
+                        <img src="converse runstars.jpeg" alt="snow" style="width:100%">
+                        <h4>Converse Runstars</h4>
+                        <p>Ksh 3200</p>
+                        <p><button onclick="AddToCart('Converse Runstars', 3200)">Add To Cart</button></p>
+                    </div>
+                </div>
+                <div class="column-1">
+                    <div class="card" item="item2">
+                        <img src="airforce 1 plain white.jpeg" alt="Forest" style="width:100%">
+                        <h4>Airforce 1 Plain White</h4>
+                        <p>Ksh 2000</p>
+                        <p><button onclick="AddToCart('Airforce 1 Plain White', 2000)">Add To Cart</button></p>
+                    </div>
+                </div>
+                <div class="column-1">
+                    <div class="card" item="item3">
+                        <img src="ankle boots.jpeg" alt="Mountains" style="width:100%">
+                        <h4>Ankle boots</h4>
+                        <p>Ksh 2500</p>
+                        <p><button onclick="AddToCart('Ankle boots', 2500)">Add To Cart</button></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column-1">
+                    <div class="card" item="item4">
+                        <img src="AIRFORCE CUSTOM.jpeg" alt="Mountains" style="width:100%">
+                        <h4>Airforce Custom</h4>
+                        <p>Ksh 3200</p>
+                        <p><button onclick="AddToCart('Airforce Custom', 3200)">Add To Cart</button></p>
+                    </div>
+                </div>
+                <div class="column-1">
+                    <div class="card" item="item5">
+                        <img src="naked wolfe.jpeg" alt="forest" style="width: 100%">
+                        <h2>Naked Wolfe</h2>
+                        <p>Ksh 3400</p>
+                        <p><button onclick="AddToCart('Naked Wolfe', 3400)">Add To Cart</button></p>
+                    </div>
+                </div>
+                <div class="column-1">
+                    <div class="card" item="item6">
+                        <img src="airforce valentine.jpeg" alt="forest" style="width: 100%;">
+                        <h4>Airforce Valentine</h4>
+                        <p>Ksh 2900</p>
+                        <p><button onclick="AddToCart('Airforce Valentine', 2900)">Add To Cart</button></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="offer">
+        <div class="small-container">
+            <div class="row">
+                <div class="column-2">
+                    <img src="CONVERSE ALL STAR.jpeg" alt="snow" style="width:100%" class="offer-img">
+                </div>
+                <div class="column-2">
+                    <p>Exclusively Available on Sneakers Collections</p>
+                    <h1>Smart Band</h1>
+                    <a href="" class="btn">Buy Now &#8594;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Section -->
+    <div class="checkout">
+        <div class="small-container">
+            <h2>Checkout</h2>
+            <form onsubmit="event.preventDefault(); checkout();">
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div>
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" required>
+                </div>
+                <div>
+                    <label>Payment Method:</label>
+                    <div>
+                        <input type="radio" name="payment" value="Credit Card" checked> Credit Card
+                    </div>
+                    <div>
+                        <input type="radio" name="payment" value="PayPal"> PayPal
+                    </div>
+                </div>
+                <input type="radio" name="payment" value="M-pesa"> M-pesa
+            </div>
+        </div>
+                <input type="hidden" id="total-price">
+                <button type="submit">Checkout</button>
+            </form>
+        </div>
+    </div>
+        <!-- Footer Section -->
+        <footer class="footer">
+          <div class="footer-container">
+              <div class="footer-links">
+                  <a href="Index.html">Home</a>
+                  <a href="Shop.html">Shop</a>
+                  <a href="Contact.html">Contact Us</a>
+                  <a href="About.html">About Us</a>
+                  <a href="Terms.html">Terms & Conditions</a>
+              </div>
+              <div class="footer-social">
+                  <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                  <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                  <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                  <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+              <div class="footer-info">
+                  <p><b>&copy; 2024 Sneakers Collection. All rights reserved.</b></p>
+              </div>
+          </div>
+      </footer>
+  
+</body>
+</html>
